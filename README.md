@@ -51,3 +51,28 @@ Test your new function; I've provided some basic testing code in `code.test.js`.
 What is the worst-case asymptotic time complexity of your implementation? What
 is the worst-case asymptotic memory complexity? Add your answer, including your
 reasoning, to this markdown file.
+
+## Runtime Response
+
+I have opted to do this in pieces so as to simplify the complexity. The asymptotic complexity of optSwap is $\Theta(\frac{k-i}{2})$ where k and i are their respective parameters within the function, $k-i$ represents the length of the section to be reversed. From here on out this length will be represented as $j$, hence $k-i=j$. It is divided by 2 because $k$ and $i$ are decremented and incremented, respectively, at the same time.
+
+The asymptotic complexity of routeCost is much simpler as it increments through all the vertices, excluding one, once so it is $\Theta(|V|)$ The one is not subtracted here because it makes little difference to asymptotic complexity.
+
+Finally, we must take a look at the bulk of our tsp_ls function. For the worst case complexity, focusing on our inner for-loop where the bulk of the work is done, we expect that $j$ will grow to the length of the route. And it always starts at $j=1$. So this loop is best represented as a sum for now: $$\sum_{j=1}^{|V|}\frac{j}{2}$$
+
+Going through the whole function in order, we begin with two loops that run for the number of nodes, both complexity $\Theta(|V|)$, followed by the initial run of routeCost, another $\Theta(|V|)$. Then we get to our outer for-loop that runs 3 times, and we will leave it as three for now, within which is our sum accompanied by routeCost that will run as many times as the sum which will run $|V|$ times, but routeCost's complexity won't change so we will put it as $|V|^2$ and just add it to the sum. At this step our current complexity is:
+$$\Theta(3|V|+3((\sum_{j=1}^{|V|}\frac{j}{2})+|V|^2))$$
+Now we can ignore constants including $\frac{1}{2}$ inside the summation because it can be removed.
+$$\Theta(|V|+(\sum_{j=1}^{|V|}j)+|V|^2)$$
+Using a summation formula we can turn our sum into:
+$$\Theta(|V|+\frac{|V|(|V|-1)}{2}+|V|^2)$$
+We simplify again:
+$$\Theta(|V|^2+|V|+\frac{|V|^2-|V|}{2})$$
+We will ignore constant multiples again to get:
+$$\Theta(|V|^2+|V|+|V|^2-|V|)$$
+And simplify:
+$$\Theta(2|V|^2+2|V|)$$
+And again:
+$$\Theta(|V|^2+|V|)$$
+And ignoring lower order functions we get:
+$$\Theta(|V|^2)$$
