@@ -9,7 +9,6 @@ function tsp_ls(distance_matrix) {
     //I'm "The next"!
 
     let routeLen = routeCost(distance_matrix, route);
-    let min = Infinity;
     for(let b = 0; b < 3; b++){ //Because the inner for loop takes a random number, this for loop gives it 3 chances to pick a good random index.
         for(let i = getRandomInt(distance_matrix.length - 1), k = i + 1, v = 0; i >= 0 && k < distance_matrix.length; v++){
             // i is selected randomly and k is chosen to be just above it.
@@ -26,10 +25,8 @@ function tsp_ls(distance_matrix) {
             else if(v%2 == 1 || i == 0)
                 k++;
         }
-        if(routeLen < min)
-            min = routeLen; // Here the smalles of the three attempts is collected.
     }
-    return min;
+    return routeLen;
 }
 //For the above function, since i and k are reset every time route is changed the idea is that the actual ending conditions for the inner for loop will
 //only be hit if k and i get to the point were they stretch across the whole array without changing anything. It is kind of like bubble sort in how it ends when
