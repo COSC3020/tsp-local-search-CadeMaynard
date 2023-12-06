@@ -60,7 +60,7 @@ I have opted to do this in pieces so as to simplify the complexity. The asymptot
 
 The asymptotic complexity of routeCost is much simpler as it increments through all the vertices, excluding one, once so it is $\Theta(|V|)$ The one is not subtracted here because it makes little difference to asymptotic complexity.
 
-Finally, we must take a look at the bulk of our tsp_ls function. For the worst case complexity, focusing on our inner for-loop where the bulk of the work is done, we expect that $j$ will grow to the length of the route. And it always starts at $j=1$. So this loop is best represented as a sum for now: $$\sum_{j=1}^{|V|}\frac{j}{2}$$
+Finally, we must take a look at the bulk of our tsp_ls function. For the worst case complexity, focusing on our inner for-loop where the bulk of the work is done, we expect that the length of the section we are swapping will grow to the length of the route. And it always starts at $1$. We will use $j$ to represent the length of the swapped section of the route for the sake of simplicity as above. This loop is best represented as a sum for now: $$\sum_{j=1}^{|V|}\frac{j}{2}$$
 
 Going through the whole function in order, we begin with two loops that run for the number of nodes, both complexity $\Theta(|V|)$, followed by the initial run of routeCost, another $\Theta(|V|)$. Then we get to our outer for-loop that runs 3 times, and we will leave it as three for now, within which is our sum accompanied by routeCost that will run as many times as the sum which will run $|V|$ times, but routeCost's complexity won't change so we will put it as $|V|^2$ and just add it to the sum. At this step our current complexity is:
 $$\Theta(3|V|+3((\sum_{j=1}^{|V|}\frac{j}{2})+|V|^2))$$
@@ -81,7 +81,7 @@ $$\Theta(|V|^2)$$
 
 ### Memory Complexity
 
-Memory complexity is a lot simpler in the case of this algorithm. It is not memoized so though there are several things that will be influenced by the input, none of them beyond just being the length of the input. The largest memory use in the whole of the program is the $|V|^2$ required by the adjacency matrix, everything else is either lower order or constant, so the memory complexity is $\Theta(|V|^2)$
+Memory complexity is a lot simpler in the case of this algorithm. It is not memoized so though there are several things that will be influenced by the input, none of them beyond just being the length of the input. Several times in this program arrays are created with lengths equal to the number of nodes in the graph. That is the largest memory needed for this program which would be some constant $C$ to represent how many of these arrays there are, times the number of nodes, thus with constants our complexity would be $\Theta(C|V|)$ then ignoring constants we get $\Theta(|V|)$
 
 ## Sources: 
 
