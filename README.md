@@ -54,6 +54,8 @@ reasoning, to this markdown file.
 
 ## Runtime Response
 
+### Time Complexity
+
 I have opted to do this in pieces so as to simplify the complexity. The asymptotic complexity of optSwap is $\Theta(\frac{k-i}{2})$ where k and i are their respective parameters within the function, $k-i$ represents the length of the section to be reversed. From here on out this length will be represented as $j$, hence $k-i=j$. It is divided by 2 because $k$ and $i$ are decremented and incremented, respectively, at the same time.
 
 The asymptotic complexity of routeCost is much simpler as it increments through all the vertices, excluding one, once so it is $\Theta(|V|)$ The one is not subtracted here because it makes little difference to asymptotic complexity.
@@ -76,3 +78,11 @@ And again:
 $$\Theta(|V|^2+|V|)$$
 And ignoring lower order functions we get:
 $$\Theta(|V|^2)$$
+
+### Memory Complexity
+
+Memory complexity is a lot simpler in the case of this algorithm. It is not memoized so though there are several things that will be influenced by the input, none of them beyond just being the length of the input. The largest memory use in the whole of the program is the $|V|^2$ required by the adjacency matrix, everything else is either lower order or constant, so the memory complexity is $\Theta(|V|^2)$
+
+## Sources: 
+
+https://ms.uky.edu/~123/lecturenotes/Chapter9_answers.pdf
